@@ -1,0 +1,267 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+
+{% block body %}
+
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+        <!-- Topnav -->
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Search form -->
+                    <!-- Navbar links -->
+                    <ul class="navbar-nav align-items-center  ml-md-auto ">
+                        <li class="nav-item d-xl-none">
+                            <!-- Sidenav toggler -->
+                            <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-sm-none">
+                            <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                                <i class="ni ni-zoom-split-in"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="media align-items-center">
+                  <span class="avatar avatar-sm rounded-circle">
+                    <img alt="Image placeholder"  src="{{ asset('/assets/img/user.png') }}">
+                  </span>
+                                    <div class="media-body  ml-2  d-none d-lg-block">
+                                        <span class="mb-0 text-sm  font-weight-bold">{{ app.user.firstname }} {{ app.user.lastname }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu  dropdown-menu-right ">
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome!</h6>
+                                </div>
+                                <a href="{{ path('profil') }}" class="dropdown-item">
+                                    <i class="ni ni-single-02"></i>
+                                    <span>My profile</span>
+                                </a>
+                                <a href="#!" class="dropdown-item">
+                                    <i class="ni ni-settings-gear-65"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <a href="#!" class="dropdown-item">
+                                    <i class="ni ni-calendar-grid-58"></i>
+                                    <span>Activity</span>
+                                </a>
+                                <a href="#!" class="dropdown-item">
+                                    <i class="ni ni-support-16"></i>
+                                    <span>Support</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ path('app_logout') }}" class="dropdown-item">
+                                    <i class="ni ni-user-run"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header -->
+        <!-- Header -->
+        <div class="header pb-6 d-flex align-items-center" style="min-height: 350px;  background-size: cover; background-position: center top;">
+            <!-- Mask -->
+            <span class="mask bg-gradient-default opacity-8"></span>
+            <!-- Header container -->
+            <div class="container-fluid d-flex align-items-center">
+                <div class="row">
+                    <div class="col-lg-12 col-md-10">
+                        <h1 class="display-2 text-white">Hello {{ app.user.firstname }} {{ app.user.lastname }}</h1>
+                        <p class="text-white mt-0 mb-5">this page helps you access your information WITHOUT being able to edit them.</p>
+                        <a style="visibility: hidden;" href="#!" class="btn btn-neutral">Edit profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page content -->
+        <div class="container-fluid mt--6 bg-gradient-default opacity-8" style="margin-top: 0px!important; height: 508px;">
+            <div class="row">
+                <!-- ///////////////////////////////////////// -->
+                <div class="col-xl-4 order-xl-2">
+                    <div class="card card-profile">
+                        <div style="margin:auto;" class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                            <div class="d-flex justify-content-between">
+                                <a id="button-yassine" href="#" class="btn btn-sm btn-info  mr-4 ">chnage Grraph display</a>
+
+
+                            </div>
+
+
+                    </div>
+                        <div class="card-body pt-0">
+                            <div class="col">
+                                <div style="padding: 0!important;" class="card-profile-stats d-flex justify-content-center">
+                                    <div>
+                                        <span class="heading">Weekly Login Times</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="round" class="row">
+                                <canvas style="max-height:400px!important; max-width:500px!important;" id="categories" width="50" height="30"></canvas>
+
+                            </div>
+                            <div id="linear" class="row">
+                            <canvas style="max-height:300px!important; max-width:500px!important;" id="annonces" width="600" height="400"></canvas>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+               <!-- ///////////////////////////////////////// -->
+                <div class="col-xl-8 order-xl-1">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Profil</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="heading-small text-muted mb-4">User information</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-first-name">First name</label>
+                                            <input value="{{ app.user.firstname }}" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-last-name">Last name</label>
+                                            <input value="{{ app.user.lastname }}" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Email</label>
+                                            <input value="{{ app.user.email }}" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-last-name">Role</label>
+                                            <input value="{% for role in app.user.roles %}{% if role == "ROLE_ADMIN" %} / ADMIN / {% elseif role == "ROLE_EDITOR"%}/ MOD / {% else %} / USER / {% endif %}{% endfor %}" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-first-name">phone number</label>
+                                            <input value="{{ app.user.phonenumber }}" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+
+
+        let categories = document.querySelector("#categories")
+        let categGraph = new Chart(categories, {
+            type: "pie",
+            data: {
+                labels: {{ date_names|raw }},
+                datasets: [{
+                    label: "Repartition des categories",
+                    data: {{ date_counts|raw }},
+                    backgroundColor: {{ date_colors|raw }}
+                }]
+            }
+        })
+
+        let annonces = document.querySelector("#annonces")
+        let annGraph = new Chart(annonces, {
+            type: "bar",
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 10,
+                            stepSize: 1,
+
+                        }
+                    }]
+                }
+            },
+            data: {
+                labels: {{ date_names|raw }},
+                datasets: [{
+                    label: "Repartition des logins",
+                    data: {{ date_counts|raw }},
+                    backgroundColor: {{ date_colors|raw }}
+                }]
+            }
+        })
+    </script>
+
+    <script>
+        const targetDivRound = document.getElementById("round");
+        const targetDivLinear = document.getElementById("linear");
+        targetDivLinear.style.display = "none";
+        targetDivRound.style.display = "block";
+
+
+
+        const btn = document.getElementById("button-yassine");
+        btn.onclick = function () {
+            if (targetDivRound.style.display !== "none") {
+                targetDivRound.style.display = "none";
+                targetDivLinear.style.display = "block";
+            } else {
+                targetDivRound.style.display = "block";
+                targetDivLinear.style.display = "none";
+            }
+        };
+    </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+    <h1>Blog index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCreatedAt</th>
+                <th>DateModifiedAt</th>
+                <th>BlogContent</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+            <tr>
+                <td>{{ blog.id }}</td>
+                <td>{{ blog.DateCreatedAt ? blog.DateCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ blog.DateModifiedAt ? blog.DateModifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ blog.blogContent }}</td>
+                <td>
+                    <a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
+                    <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('blog_new') }}">Create new</a>
+{% endblock %}
